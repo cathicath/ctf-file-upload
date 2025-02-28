@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Temple of Thoth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('/static/images/PAPYRUS.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #e6cfb8d6;
+            font-family: "IM Fell English SC", serif;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            font-size: larger;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        }
+        .upload-box {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            border: 5px solid #6f5d4d;
+        }
+        .translator-box {
+            max-width: 300px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #E0C4A8;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            margin-left: 20px;
+            text-align: left;
+            font-size: large;
+        }
+        h1 {
+            font-size: 2.3em;
+        }
+        .flag-box {
+            font-size: 24px;
+            background: #222;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 20px;
+            color: #E0C4A8;
+        }
+        textarea {
+            background: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #6f5d4d;
+            width: 90%;
+            height: 80px;
+            resize: vertical;
+        }
+        button {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #6f5d4d;
+            background: #9d8169;
+            color: #E0C4A8;
+            cursor: pointer;
+            font-size: medium;
+        }
+        button:hover {
+            background: #9d8169;
+        }
+        .hint {
+            font-size: 22px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            color: #E0C4A8;
+            text-shadow: 2px 2px 4px black;
+            font-family: 'Courier New', monospace;
+            width: 400px;
+            word-wrap: break-word;
+            opacity: 0.4;
+            transition: opacity 0.5s;
+        }
+        .hint:hover {
+            opacity: 1;
+        }
+        .small-text {
+        font-size: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Lost Scriptures of Thoth</h1>
+        <p>The temple doors creak open, revealing an ancient chamber filled with inscriptions of forgotten wisdom. A solemn voice echoes: <br>"Present your offering, and the knowledge of the ancients shall be unveiled."</br></p>
+        
+        <div class="upload-box">
+            <h2><span class="small-text">𓍶 𓎉 𓍶</span>   The Altar of Submission   <span class="small-text">𓍶 𓎉 𓍶</span></h2>
+            <p>Place your offering before the gods:</p>
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <button type="submit">Submit Offering</button>
+            </form>
+        </div>
+        
+        {% if message %}
+        <p><strong>{{ message|safe }}</strong></p>
+        {% endif %}
+        
+        {% if flag %}
+        <h2>The Sacred Inscription Has Been Revealed:</h2>
+        <div class="flag-box" id="generated-flag">{{ flag }}</div>
+        {% endif %}
+        
+        <p class="hint">𓇁𓎉𓆣𓋪𓉡𓏏𓋏𓍄𓆣𓍷𓋪𓌮𓌩𓉡𓋏𓍄𓌮𓍶𓎛𓌮𓊿𓌩𓉡𓋪𓏏𓍄𓆣𓋪𓉡𓏏𓀃𓆣𓆑𓍓𓏏𓍄𓍷𓆣𓍷𓋪𓈬𓍵𓋪𓍷𓆣𓋏𓆣𓍶𓎛𓌮𓊿𓌩𓆯𓋪𓈬𓍓𓎛𓋪𓏏𓌩𓋪𓏏𓍷𓍷𓌮𓎛𓌮𓊿𓌩𓋪𓋫𓌮𓆑𓎉𓎛𓋪𓍷𓆣𓋏𓆣𓌮𓋝𓆣𓋪𓎛𓎉𓆣𓋪𓎛𓆣𓋫𓍶𓍖𓆣𓎬𓉡𓋪𓆑𓍓𓏏𓍄𓍷𓌮𓏏𓌩𓉡𓊢</p>
+    </div>
+    
+    <div class="translator-box">
+        <h3>Ancient Translator</h3>
+        <textarea id="input-hieroglyphs" placeholder="Enter hieroglyphs or text..."></textarea>
+        <button onclick="translateToText()">Decipher</button>
+        <button onclick="translateToHieroglyphs()">Translate to Hieroglyphs</button>
+        <div class="translated-flag" id="translated-text"></div>
+    </div>
+
+    <script>
+        function translateToText() {
+            const input = document.getElementById("input-hieroglyphs").value;
+            fetch("/translate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ hieroglyphs: input })
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById("translated-text").innerText = "Translation:\n" + data.translation);
+        }
+        
+        function translateToHieroglyphs() {
+            const input = document.getElementById("input-hieroglyphs").value;
+            fetch("/translate_to_hieroglyphs", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: input })
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById("translated-text").innerText = "Translation:\n" + data.translation);
+        }
+    </script>
+</body>
+</html>

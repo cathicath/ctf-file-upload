@@ -1,4 +1,4 @@
-# SQL injection CTF challenge
+# File Upload CTF challenge
 A Capture The Flag challenge focused on file uploading vulnerabilities.
 
 ## Overview
